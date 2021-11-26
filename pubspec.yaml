@@ -30,8 +30,10 @@ flutter:
       android:
         package: org.leanflutter.plugins.flutter_flipperkit
         pluginClass: FlutterFlipperkitPlugin
-      ios:
-        pluginClass: FlutterFlipperkitPlugin
+# There are some issues on iOS side and as its not important to have logs on iOS for now
+# we will not support ios
+#      ios:
+#        pluginClass: FlutterFlipperkitPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
