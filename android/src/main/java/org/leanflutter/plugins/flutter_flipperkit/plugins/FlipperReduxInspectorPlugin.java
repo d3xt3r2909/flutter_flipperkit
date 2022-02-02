@@ -24,9 +24,9 @@ public class FlipperReduxInspectorPlugin extends BufferingFlipperPlugin {
         if (call.method.endsWith("Report")) {
             final FlipperObject actionObject =
                     new FlipperObject.Builder()
-                            .put("uniqueId", call.argument("uniqueId"))
-                            .put("actionType", call.argument("actionType"))
-                            .put("timeStamp", call.argument("timeStamp"))
+                            .put("uniqueId", (String) call.argument("uniqueId"))
+                            .put("actionType", (String) call.argument("actionType"))
+                            .put("timeStamp", (String) call.argument("timeStamp"))
                             .put("payload", this.convertJsonToString(call, "payload"))
                             .put("prevState", this.convertJsonToString(call, "prevState"))
                             .put("nextState", this.convertJsonToString(call, "nextState"))
@@ -49,12 +49,14 @@ public class FlipperReduxInspectorPlugin extends BufferingFlipperPlugin {
                 } else if (argValue instanceof ArrayList) {
                     stateString = new JSONArray((ArrayList) argValue).toString();
                 }
-            } catch (ClassCastException e) { }
+            } catch (ClassCastException e) {
+            }
 
             if (stateString == null) {
                 try {
                     stateString = call.argument(key);
-                } catch (NullPointerException e) { }
+                } catch (NullPointerException e) {
+                }
             }
         }
 
