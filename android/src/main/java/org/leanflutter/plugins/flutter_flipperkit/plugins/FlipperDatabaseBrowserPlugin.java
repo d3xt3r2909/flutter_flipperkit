@@ -44,8 +44,8 @@ public class FlipperDatabaseBrowserPlugin implements FlipperPlugin {
             @Override
             public void onReceive(FlipperObject params, FlipperResponder responder) throws Exception {
                 final Map<String, Object> map = new HashMap<>();
-                map.put("action", params.getString("action"));
-                map.put("table", params.getString("table"));
+                map.put("action", (String) params.getString("action"));
+                map.put("table", (String) params.getString("table"));
                 if (params.contains("limit")) {
                     map.put("limit", params.getInt("limit"));
                 }
@@ -85,8 +85,8 @@ public class FlipperDatabaseBrowserPlugin implements FlipperPlugin {
 
             final FlipperObject flipperObject =
                     new FlipperObject.Builder()
-                            .put("action", call.argument("action"))
-                            .put("table", call.argument("table"))
+                            .put("action", (String) call.argument("action"))
+                            .put("table", (String) call.argument("table"))
                             .put("results", results)
                             .build();
 
